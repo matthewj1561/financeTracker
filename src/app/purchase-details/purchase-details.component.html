@@ -1,0 +1,37 @@
+<h1 class="display-4 text-center">Purchase Tracker</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <app-purchase-detail-form></app-purchase-detail-form>
+  </div>
+  <div class="col-md-6">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Purchaser Name</th>
+          <th>Date Purchased</th>
+          <th>Purchase Type</th>
+          <th>Purchase Amount</th>
+          <th>Notes</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr   class="purchase-row" *ngFor="let purchase of service.purchases">
+          <td (click)="populateForm(purchase)">{{ purchase.purchasedBy }}</td>
+          <td (click)="populateForm(purchase)">{{ purchase.date }}</td>
+          <td (click)="populateForm(purchase)">{{ service.purchaseTypes | findPurchaseType : purchase.purchaseTypeId }}</td>
+          <td (click)="populateForm(purchase)">{{ purchase.amount }}</td>
+          <td (click)="populateForm(purchase)">{{ purchase.notes }}</td>
+          <td>
+            <!-- <fa-icon icon="trash-alt"></fa-icon> -->
+            <!-- https://icons8.com/icon/82708/trash-can -->
+            <!-- <img src="https://icons8.com/icon/82708/trash-can" alt="trash " /> -->
+            <fa-icon class="delete-button" (click)="onDelete(purchase.id)" [icon]="faTrash"></fa-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

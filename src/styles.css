@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+.form-group label {
+  color: grey;
+}
+
+.form-group input {
+  font-weight: 500;
+}
+
+.form-group input::placeholder {
+  color: #c0bdbd;
+  font-weight: 300;
+}
+
+thead th {
+  font-weight: 400;
+}
+
+table tbody tr:hover {
+  background-color: #fffbf2;
+  cursor: pointer;
+}
+
+/*for invalid form controls*/
+input.invalid {
+  border-color: rgb(255, 168, 168);
+}
+
+.delete-button {
+  padding: 10px;
+}
+
+.delete-button:hover {
+  color: rgb(255, 73, 73);
+  /* background-color: rgb(255, 160, 160); */
+  /* border-radius: 30px; */
+}
+

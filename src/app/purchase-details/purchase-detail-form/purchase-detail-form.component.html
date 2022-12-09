@@ -1,0 +1,96 @@
+<form
+  class="conatiner"
+  autocomplete="off"
+  novalidate
+  #form="ngForm"
+  (submit)="onSubmit(form)"
+>
+  <input type="hidden" name="purchaseId" [value]="service.formData.id" />
+  <div class="form-group">
+    <label for="purchaserName">Purchased By</label>
+    <input
+      required
+      type="text"
+      class="form-control form-control-lg"
+      placeholder="Name"
+      name="purchaserName"
+      #purchaserName="ngModel"
+      [(ngModel)]="service.formData.purchasedBy"
+      [class.invalid]="purchaserName.invalid && purchaserName.touched"
+    />
+  </div>
+  <div class="form-group">
+    <label for="purchaseDate">Date</label>
+    <input
+      required
+      type="date"
+      class="form-control form-control-lg"
+      placeholder="Date"
+      name="purchaseDate"
+      #purchaseDate="ngModel"
+      [(ngModel)]="service.formData.date"
+      [class.invalid]="purchaseDate.invalid && purchaseDate.touched"
+    />
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="purchaseAmount">Amount</label>
+      <input
+        required
+        min="0.01"
+        step="0.01"
+        type="number"
+        class="form-control form-control-lg"
+        placeholder="Amount"
+        name="purchaseAmount"
+        #purchaseAmount="ngModel"
+        [(ngModel)]="service.formData.amount"
+        [class.invalid]="purchaseAmount.invalid && purchaseAmount.touched"
+      />
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="purchaseType">Purchase Type</label>
+      <select
+        required
+        class="form-select form-select-lg"
+        name="purchaseType"
+        #purchaseType
+        [(ngModel)]="service.formData.purchaseTypeId"
+      >
+        <option
+          *ngFor="let purchaseType of service.purchaseTypes"
+          [value]="purchaseType.id"
+        >
+          {{ purchaseType.typeName }}
+        </option>
+      </select>
+      <!-- <input
+          type="text"
+          class="form-control form-control-lg"
+          placeholder="Purchase Type"
+          name="purchaseType"
+          #purchaseType
+          [(ngModel)]="service.formData.purchaseType"
+        /> -->
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="purchaseNotes">Notes</label>
+    <textarea
+      type="text"
+      class="form-control form-control-lg"
+      placeholder="Describe the Purchase"
+      name="purchaseNotes"
+      #purchaseNotes="ngModel"
+      [(ngModel)]="service.formData.notes"
+      [class.invalid]="purchaseNotes.invalid && purchaseNotes.touched"
+    ></textarea>
+  </div>
+  <div class="form-group d-grid gap-2 my-3">
+    <button class="btn btn-info btn-lg" type="submit" [disabled]="form.invalid">
+      Submit
+    </button>
+  </div>
+</form>
